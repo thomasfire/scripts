@@ -1,2 +1,0 @@
-# scripts
-Useful little scripts
