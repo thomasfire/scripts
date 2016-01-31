@@ -15,6 +15,7 @@ def getdict(filename):
     f=open(filename,'r')
     somestrin=f.read().lower()
     wenk=[',', '.', ':' ,'-','!', '?', ';' , '"',')', '(','+','*','/','=','@','#','$','%','^','&','_','–','…','№','„','“','»','«','[',']']
+    somestrin=somestrin.replace("ё","е")
     for x in wenk:
         somestrin=somestrin.replace(x,' ')
     somestrin=set(somestrin.split())
@@ -24,7 +25,7 @@ def getdict(filename):
 def addfrom(file):
     toadd=getdict(file)
     f=open(".dictionary","a")
-    f.write(" ".join(sorted(toadd)))
+    f.write(' '+" ".join(sorted(toadd))+' ')
     f.close()
 
 
