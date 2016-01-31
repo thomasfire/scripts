@@ -5,6 +5,7 @@
 def getdict(somestrin):
     somestrin=somestrin.lower()
     wenk=[',', '.', ':' ,'-','!', '?', ';' , '"',')', '(','+','*','/','=','@','#','$','%','^','&','_','–','…','№','„','“','»','«']
+    somestrin=somestrin.replace("ё","е")
     for x in wenk:
         somestrin=somestrin.replace(x,' ')
     somestrin=set(somestrin.split())
