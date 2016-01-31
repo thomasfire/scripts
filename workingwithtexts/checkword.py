@@ -19,9 +19,12 @@ def loaddict():
 
 def checksyn(somestrins):
     dicti=loaddict()
+    listmis=[]
     for x in somestrins:
         if not x in dicti:
-            return "Incorrect text"
+            listmis.append(x)
+    if listmis:
+        return "Incorrect words: "+" ".join(listmis)
     return "It`s correct text"
 
 def main():

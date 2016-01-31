@@ -37,7 +37,9 @@ def main():
     addfrom(filename)
     if len(sys.argv) == 2 or sys.argv[2]!="--nosort":
         isok=sortdict()
-    if isok:
+        if isok:
+            print("OK")
+    else:
         print("OK")
 
 main()
