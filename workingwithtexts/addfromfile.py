@@ -25,7 +25,7 @@ def getdict(filename):
 def addfrom(file):
     toadd=getdict(file)
     f=open(".dictionary","a")
-    f.write(" ".join(sorted(toadd)))
+    f.write(' '+" ".join(sorted(toadd))+' ')
     f.close()
 
 
