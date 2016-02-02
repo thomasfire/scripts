@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 
+#this script converts *.html file of articles to text of this articles 
+
 import sys
+
 
 def findtag(texthtml,tag):
     return texthtml.find(tag)
@@ -13,18 +16,18 @@ def removetags(somestrin):
         somestrin=somestrin.replace(x," ")
     somestrin=somestrin.replace("<br>","\n")
     return somestrin
+#This bad functions,they work badly
 
-def removeimages(somestrin):
+#def removeimages(somestrin):
     #while somestrin.find("<img src=")!=-1:
         #somestrin=somestrin[:somestrin.find("<img src=")]+somestrin[somestrin.find(""""alt="image">""")+len(""""alt="image">"""):]
     #while somestrin.find("<img src")!=-1:
     #    somestrin=somestrin.replace(somestrin[somestrin.find("<img src"):somestrin.find("""alt="image">""")+len("""alt="image">""")],"image")
-    return somestrin
-
-def removelinks(somestrin):
+#    return somestrin
+#def removelinks(somestrin):
     #while somestrin.find("href=")!=-1:
     #    somestrin=somestrin.replace(somestrin[somestrin.find("href="):somestrin.find("""">""")+len("""">""")]," ")
-    return somestrin
+#    return somestrin
 
 def removethis(somestrin,tag):
     for x in range(len(somestrin)):
@@ -39,11 +42,7 @@ def deletetrash(texthtml):
     newstr=texthtml[findtag(texthtml,"""<span class="post_title">"""):]
     newstr=newstr[:findtag(newstr,"""<div class="clear">""")]
     newstr=newstr[:findtag(newstr,"""<div class="hubs">""")]+newstr[findtag(newstr,"""<div class="content html_format">"""):]
-    #newstr=newstr[:findtag(newstr,"<ul>")]
-    #newstr=newstr[:findtag(newstr,"<hr>")]
     newstr=removetags(newstr)
-    #newstr=removeimages(newstr)
-    #newstr=removelinks(newstr)
     newstr=removethis(newstr,"<img src=")
     newstr=removethis(newstr,"href=")
     newstr=removethis(newstr,"class=")
