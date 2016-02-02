@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-#this script converts *.html file of articles to text of this articles 
+#this script converts *.html file of articles to text of this articles
 
 import sys
 
@@ -16,7 +16,8 @@ def removetags(somestrin):
         somestrin=somestrin.replace(x," ")
     somestrin=somestrin.replace("<br>","\n")
     return somestrin
-#This bad functions,they work badly
+    
+#This is bad functions,they work badly
 
 #def removeimages(somestrin):
     #while somestrin.find("<img src=")!=-1:
