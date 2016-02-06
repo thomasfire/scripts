@@ -21,19 +21,6 @@ def removetags(somestrin):
     somestrin=somestrin.replace("<br>","\n")
     return somestrin
 
-#This is bad functions,they work badly
-
-#def removeimages(somestrin):
-    #while somestrin.find("<img src=")!=-1:
-        #somestrin=somestrin[:somestrin.find("<img src=")]+somestrin[somestrin.find(""""alt="image">""")+len(""""alt="image">"""):]
-    #while somestrin.find("<img src")!=-1:
-    #    somestrin=somestrin.replace(somestrin[somestrin.find("<img src"):somestrin.find("""alt="image">""")+len("""alt="image">""")],"image")
-#    return somestrin
-#def removelinks(somestrin):
-    #while somestrin.find("href=")!=-1:
-    #    somestrin=somestrin.replace(somestrin[somestrin.find("href="):somestrin.find("""">""")+len("""">""")]," ")
-#    return somestrin
-
 def removethis(somestrin,tag):
     for x in range(len(somestrin)):
         if somestrin[x:x+len(tag)]==tag:
@@ -85,6 +72,8 @@ def download_images(num):
         os.mkdir(num)
     for x in img_urls:
         st=" ".join(list(re.findall(r"\w+?/(\w+?\.\w{3})",x)))
+        if not st:
+            continue
         urllib.request.urlretrieve(x, num+"/"+st)
 
 def main():
