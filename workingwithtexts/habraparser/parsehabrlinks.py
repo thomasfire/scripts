@@ -25,7 +25,7 @@ def main():
     a=re.compile(r"""https://(\w+?).ru""")
     source=" ".join(list(re.findall(a,sys.argv[1])))
     g=open(source+".links","w")
-    g.write("\n".join(links))
+    g.write("\n".join(links)+"\n")
     g.close()
 
 main()
