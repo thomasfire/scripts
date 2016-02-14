@@ -28,4 +28,5 @@ def main():
     g.write("\n".join(links)+"\n")
     g.close()
 
-main()
+if __name__ == '__main__':
+    main()
