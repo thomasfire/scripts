@@ -1,3 +1,4 @@
 *.links
 /__pycache__/
 /test.py
+/vk_config.json
