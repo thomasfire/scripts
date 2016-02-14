@@ -14,19 +14,21 @@ def extractlinks(texthtml):
     listoflinks=re.findall(a,texthtml)
     return listoflinks
 
-def main():
-    if len(sys.argv)!=2:
-        print("URL is needed to parse.")
-        sys.exit(1)
-    f=urllib.request.urlopen(sys.argv[1])
+def main(resource):
+    resource="https://"+resource+".ru/all/"
+    f=urllib.request.urlopen(resource)
     toparse=str(f.read(),encoding='utf8')
     f.close()
     links=extractlinks(toparse)
     a=re.compile(r"""https://(\w+?).ru""")
-    source=" ".join(list(re.findall(a,sys.argv[1])))
+    source=" ".join(list(re.findall(a,resource)))
     g=open(source+".links","w")
     g.write("\n".join(links)+"\n")
     g.close()
 
 if __name__ == '__main__':
     main()
+
+def parselinks(resource):
+    print("Parsing links....")
+    main(resource)
