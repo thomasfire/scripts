@@ -76,15 +76,12 @@ def download_images(num):
             continue
         urllib.request.urlretrieve(x, num+"/"+st)
 
-def main():
-    if len(sys.argv)!=2:
-        print("URL is needed to parse.")
-        sys.exit(1)
+def main(resource):
 
-    f=urllib.request.urlopen(sys.argv[1])
+    f=urllib.request.urlopen(resource)
     toparse=str(f.read(),encoding='utf8')
     a=re.compile(r"""/(\d+?)/""")
-    num=" ".join(list(re.findall(a,sys.argv[1])))
+    num=" ".join(list(re.findall(a,resource)))
     f.close()
     g=open(num+".parsed","w")
     g.write(deletetrash(toparse,num))
@@ -93,6 +90,10 @@ def main():
     shutil.move(num+".parsed", num+'/'+num+".parsed")
     shutil.move(num+".images", num+'/'+num+".images")
     shutil.move(num+".links", num+'/'+num+".links")
-    
+
 if __name__=="__main__":
     main()
+
+def parsearts(resource):
+    
+    main(resource)
