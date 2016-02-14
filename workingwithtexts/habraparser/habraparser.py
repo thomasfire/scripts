@@ -93,4 +93,6 @@ def main():
     shutil.move(num+".parsed", num+'/'+num+".parsed")
     shutil.move(num+".images", num+'/'+num+".images")
     shutil.move(num+".links", num+'/'+num+".links")
-main()
+    
+if __name__=="__main__":
+    main()
