@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
+
+#posts from sequence
+
 import vk_api
 import os
 import shutil
@@ -16,7 +18,7 @@ def getimages(listoffiles):
                 res.append(x)
     return res
 
-def main():
+def main(resource):
     vset=open("vk.settings","r")
     settings=vset.read()
     vset.close()
@@ -33,7 +35,7 @@ def main():
         return
 
     upload = vk_api.VkUpload(vk_session)
-    seqfile=open(sys.argv[1]+".seq","r")
+    seqfile=open(resource+".seq","r")
     seq=seqfile.read().split()
 
     vk = vk_session.get_api()
@@ -53,3 +55,9 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
+def startuploading(resource):
+    print("Uploading....")
+    main(resource)
