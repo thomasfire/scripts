@@ -45,7 +45,6 @@ def main(resource):
         listofatt=[]
         for y in getimages(os.listdir(x)):
             vkpost=upload.photo_wall(x+'/'+y,group_id=group)
-            #dic[x].append({'media_id':vkpost['id'],'owner_id':vkpost['owner_id']})
             listofatt.append('photo'+str(vkpost[0]['owner_id'])+'_'+str(vkpost[0]['id']))
         f=open(x+"/"+x+".parsed","r")
         mes=f.read()
