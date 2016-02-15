@@ -35,6 +35,16 @@ def findimg(texthtml):
     listofimg=re.findall(a,texthtml)
     return listofimg
 
+def videolink(texthtml):
+    a=re.compile(r"""<iframe.*?src="(.+?)".*?>.*?</iframe>""",re.DOTALL)
+    b=re.compile(r"""(<iframe.*?src=".+?".*?>.*?</iframe>)""",re.DOTALL)
+    listoftags=re.findall(b,texthtml)
+    listoflinks=re.findall(a,texthtml)
+    for x in range(len(listoftags)):
+        print(listoftags[x],listoflinks[x])
+        texthtml=texthtml.replace(listoftags[x],listoflinks[x])
+    return texthtml
+
 def deletetrash(texthtml,num):
     newstr=texthtml[findtag(texthtml,"""<span class="post_title">"""):]
     newstr=newstr[:findtag(newstr,"""<div class="clear">""")]
@@ -58,11 +68,14 @@ def deletetrash(texthtml,num):
     g=open(num+".links","w")
     g.write("\n".join(listoflinks))
     g.close()
-    #newstr=re.sub(r'\s+', ' ', newstr)
-    newstr=re.sub(r'\t+', '\n', newstr)
+    newstr=videolink(newstr)
+    newstr=re.sub(r'\v+', '', newstr)
+    newstr=re.sub(r'\t+', '', newstr)
+    newstr=re.sub(r'\f+', '', newstr)
     newstr=re.sub(r'\r+', '\n', newstr)
     newstr=re.sub(r'\n+', '\n', newstr)
-    re.sub("^\s+|\n|\r|\s+$", '', newstr)
+    #newstr=re.sub(r"^\n+|\r+|\t+$", '\n', newstr)
+
     return newstr
 
 def download_images(num):
@@ -95,5 +108,5 @@ if __name__=="__main__":
     main()
 
 def parsearts(resource):
-    
+
     main(resource)
