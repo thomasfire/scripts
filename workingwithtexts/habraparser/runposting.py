@@ -2,6 +2,7 @@
 import vkupload as vup
 import habraparser as hper
 import parsehabrlinks as phlinks
+import makeseq as mkseq
 import time
 import random
 
@@ -12,9 +13,16 @@ def main():
     f.close()
     links=open(resource+".links",'r').read().split()
     while True:
-        phlinks.parselinks(resource)
-        for x in links:
-            hper.parsearts(x)
+    #    try:
+    #        phlinks.parselinks(resource)
+    #    except:
+    #        print("Somethings wrong,maybe it's bad connection\n")
+        try:
+            for x in links:
+                hper.parsearts(x)
+        except:
+            print("Somethings wrong,maybe it's bad connection\n")
+        mkseq.makeseq(resource)
         vup.startuploading(resource)
         sltime=3600 + random.randint(1,3600)
         print("Sleeping for ",sltime)
