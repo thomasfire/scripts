@@ -13,10 +13,10 @@ def main():
     f.close()
     links=open(resource+".links",'r').read().split()
     while True:
-    #    try:
-    #        phlinks.parselinks(resource)
-    #    except:
-    #        print("Somethings wrong,maybe it's bad connection\n")
+        try:
+            phlinks.parselinks(resource)
+        except:
+            print("Somethings wrong,maybe it's bad connection\n")
         try:
             for x in links:
                 hper.parsearts(x)
