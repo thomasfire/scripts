@@ -50,6 +50,7 @@ def main(resource):
         f=open(x+"/"+x+".parsed","r")
         mes=f.read()
         f.close()
+        #print(mes)
         posting=vk.wall.post(owner_id=-int(group),message=mes,attachments=','.join(listofatt))
 
 
