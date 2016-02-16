@@ -41,7 +41,7 @@ def videolink(texthtml):
     listoftags=re.findall(b,texthtml)
     listoflinks=re.findall(a,texthtml)
     for x in range(len(listoftags)):
-        print(listoftags[x],listoflinks[x])
+    #    print(listoftags[x],listoflinks[x])
         texthtml=texthtml.replace(listoftags[x],listoflinks[x])
     return texthtml
 
@@ -78,6 +78,21 @@ def deletetrash(texthtml,num):
 
     return newstr
 
+def formatext(lines):
+    x=0
+    while x<len(lines):
+        #print(x,len(lines))
+        if lines[x].isspace():
+            i=0
+            while lines[x+i].isspace() and x+i<len(lines)-1:
+                i+=1
+            if i>0:
+                del lines[x:i]
+            if x+1==len(lines):
+                break
+        x+=1
+    return "".join(lines)
+
 def download_images(num):
     f=open(num+".images","r")
     img_urls=f.read().split()
@@ -98,6 +113,13 @@ def main(resource):
     f.close()
     g=open(num+".parsed","w")
     g.write(deletetrash(toparse,num))
+    g.close()
+    g=open(num+".parsed","r")
+    lines=list(g.readlines())
+    #print(lines)
+    g.close()
+    g=open(num+".parsed","w")
+    g.write(formatext(lines))
     g.close()
     download_images(num)
     shutil.move(num+".parsed", num+'/'+num+".parsed")
