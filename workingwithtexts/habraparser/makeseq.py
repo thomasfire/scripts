@@ -3,10 +3,13 @@
 #makes sequence from .keywords
 
 import os
+import re
 
 def loadkeys():
     f=open(".keywords","r")
-    return f.read().split()
+    res=re.findall(r":(\w+?){.*?}",f.read())
+    f.close()
+    return res
 
 def getlistofarts():
     dirs=os.listdir(".")
@@ -24,6 +27,25 @@ def checkart(num,keys):
             return True
     return False
 
+def addtags(seq):
+    f=open(".keywords","r")
+    keys=f.read()
+    f.close()
+    res=re.findall(r":(.+?){(.*?)}",keys)
+    auto=''.join(re.findall(r"::{(.*?)}",keys))
+    hashtags=[]
+    #hashtags.append(auto)
+    for x in seq:
+        g=open(x+'/'+x+'.parsed','r')
+        buff=g.read()
+        g.close()
+        g=open(x+'/'+x+'.parsed','a')
+        for y in res:
+            if y[0] in buff:
+                hashtags.append(y[1])
+        #print(hashtags)
+        g.write('\n'+' '.join(hashtags))
+        g.close()
 
 def main(resource):
     keys=loadkeys()
@@ -38,10 +60,13 @@ def main(resource):
     g=open(resource+'.posted','r')
     posted=g.read().split()
     g.close()
+    seq=[]
     for x in arts:
         if checkart(x,keys) and x not in posted:
+            seq.append(x)
             f.write(x+'\n')
     f.close()
+    addtags(seq)
 
 if __name__ == '__main__':
     main()
