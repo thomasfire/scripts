@@ -37,6 +37,7 @@ def main(resource):
     upload = vk_api.VkUpload(vk_session)
     seqfile=open(resource+".seq","r")
     seq=seqfile.read().split()
+    print(" ".join(seq))
 
     vk = vk_session.get_api()
 
@@ -53,7 +54,7 @@ def main(resource):
 
 
 if __name__ == '__main__':
-    main()
+    main("geektimes")
 
 
 
