@@ -2,4 +2,4 @@ geektimes
 //first line is the resource(habrahabr,geektimes,megamozg)
 grouptosend=1248163264#endgroupid     //ID of the group you want to send
 login=login@example.com#endlogin    //Your login
-password=PASSWORD#endpass         //your password
+password=PASSWORD#endpass 
