@@ -45,8 +45,19 @@ def videolink(texthtml):
         texthtml=texthtml.replace(listoftags[x],listoflinks[x])
     return texthtml
 
+
+def delpoll(text):
+    a=re.compile(r"""(<div class="polling">.*</div>)""",re.DOTALL)
+    #print(re.findall(a,text))
+    for x in re.findall(a,text):
+        text=text.replace(x,'')
+    #text=re.sub(a,'',text)
+    #print(text)
+    return text
+
 def deletetrash(texthtml,num):
     newstr=texthtml[findtag(texthtml,"""<span class="post_title">"""):]
+    newstr=delpoll(newstr)
     newstr=newstr[:findtag(newstr,"""<div class="clear">""")]
     newstr=newstr[:findtag(newstr,"""<div class="hubs">""")]+newstr[findtag(newstr,"""<div class="content html_format">"""):]
     newstr=removetags(newstr)
@@ -127,7 +138,7 @@ def main(resource):
     shutil.move(num+".links", num+'/'+num+".links")
 
 if __name__=="__main__":
-    main()
+    main(sys.argv[1])
 
 def parsearts(resource):
 
