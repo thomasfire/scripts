@@ -1,5 +1,5 @@
 geektimes
 //first line is the resource(habrahabr,geektimes,megamozg)
-grouptosend=54681902#endgroupid     //ID of the group you want to send
-login=login@mail.domen#endlogin    //Your login
+grouptosend=1248163264#endgroupid     //ID of the group you want to send
+login=login@example.com#endlogin    //Your login
 password=PASSWORD#endpass         //your password
